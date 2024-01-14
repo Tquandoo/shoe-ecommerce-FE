@@ -3,6 +3,17 @@
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
 }
+
+input[type='search']::placeholder {
+  color: rgba(0, 0, 0, .2)
+}
+
+.btn-cart:hover {
+  scale: 1.2;
+  cursor: pointer;
+}
+
+/* sidebar */
 .sidebar{
   min-width: 230px; 
   border-right: 1px solid #333;
@@ -50,6 +61,7 @@
   margin-left: 5px;
 }
 
+/* navbar-search */
 .search {
   border-radius: 10px;
   min-width: 500px;
@@ -83,28 +95,25 @@
   display: flex;
   align-items: center;
 }
-
-/* Thêm các kiểu dáng khác tùy thuộc vào ý của bạn */
-
-.cart-user{
-  font-size: 1.6rem;
-}
-/* Tùy chỉnh màu sắc khi ô input được focus */
 .search:focus {
   border-color: #66afe9; 
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); 
 }
+
+/* card */
 .card{
   width: 16rem;
   padding: 20px 20px 0 20px;
-  margin: 25px 25px 10px 0;
+  margin: 0 25px 10px 0;
 }
 .card-img{
   width: 100px;
   height: 100px;
   object-fit: contain;
 }
-
+.card-body{
+  padding: 15px 15px 0 15px !important;
+}
 .rate-star{
   color: #e5e913d7;
 }

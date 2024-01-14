@@ -1,68 +1,75 @@
-import React, { useContext, useEffect } from 'react';
-import Product from './Product';
-import { ShoeContext } from '../context/ShoeContext';
-import { FaArrowAltCircleUp } from 'react-icons/fa';
-import { getProductList } from '../../reducer/actions';
+import React, { useEffect } from "react";
+import Product from "./Product";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductList } from "../../reducer/actions";
 
-/* 
-    1.store
-    2.rootReducer
-      2.1. reducer
-      2.2. reducer
+/*
+    1. store
+    2. rootReducer
+        2.1. reducer
+        2.2. reducer
     3. actions (action creator)
     4. dispatch => useDispatch
-    5. useSelect => lấy các dữ liệu riêng biệt trong state(data)
-*/
-const Products = () => {
-  const {state, dispatch } = useContext(ShoeContext)
-  const { productList, filters: { searchText, recommended, category, color, price } } = state
+    5. useSelect => lấy các dữ liệu riêng biệt trong state (data)
 
-  useEffect(() => {
-      const fetchProductList = async () => {
-          let productListRes = await fetch('https://jsonserver-vercel-api.vercel.app/products')
-          let data = await productListRes.json()
-          dispatch(getProductList(data))
+
+    cài đặt
+    1. npm i redux
+    2. npm i react-redux
+    3. npm i redux-devtools-extension
+ */
+const Products = () => {
+    const dispatch = useDispatch()
+    const productList = useSelector((state) => state.productList)
+    const { searchText, recommended, category, price, color } = useSelector((state) => state.filters)
+    useEffect(() => {
+        async function getProducts(){
+            let productListRes = await fetch('https://jsonserver-vercel-api.vercel.app/products')
+            let data = await productListRes.json()
+            dispatch(getProductList(data))
         }
-      fetchProductList()
-  },[])
-  const queryProduct = () => {
-    let filterProductList = [...productList]
-    if(searchText){
-      filterProductList = filterProductList.filter((p) => p.title.toLowerCase().includes(searchText.toLowerCase()))
-    }
-    if(recommended !== 'All'){
-      filterProductList = filterProductList.filter((p) => p.company.toLowerCase() === recommended.toLowerCase())
-    }
-    if(category !== 'All'){
-      filterProductList = filterProductList.filter((p) => p.category === category)
-    } 
-    if (color !== 'All') {
-      filterProductList = filterProductList.filter((p) => p.color === color);
-    }
-    if (price !== '0,0'){
-      const [ min, max ] = price.split(',')
-      if( min != max){
-       filterProductList  = filterProductList.filter((p) => p.newPrice > Number(min) && p.newPrice <= Number(max))
-      }
-      else{
-        filterProductList  = filterProductList.filter((p) => p.newPrice > Number(min))
-      }
-    }
-    return filterProductList
-  }
-  const remainProductList = queryProduct()
-  return (
-    <div className="d-flex flex-column justify-content-center my-3">
-      <h5 className='text-start'>Products</h5>
-      <div className="d-flex flex-wrap row">
-        {
-          remainProductList?.map(product => (
-              <Product key={product.id} product={product}/>
-          ))
+
+        getProducts()
+    }, [])
+    const queryProductList = () => {
+        let queryProducts = [...productList]
+        if(searchText) {
+            queryProducts = queryProducts.filter((p) => p.title.toLowerCase().includes(searchText.toLowerCase()))
         }
-      </div>
-    </div>
-  );
-};
+        if(recommended !== 'All'){
+            queryProducts = queryProducts.filter((p) => p.company.toLowerCase() === recommended.toLowerCase())
+        }
+        if(category !== 'All') {
+            queryProducts = queryProducts.filter((p) => p.category.toLowerCase() === category.toLowerCase())
+        }
+        if(color !== 'All') {
+            queryProducts = queryProducts.filter((p) => p.color.toLowerCase() === color.toLowerCase())
+        }
+        if(price !== '0,0') {
+            const [min, max] = price.split(',')
+            if(min !== max){
+                queryProducts = queryProducts.filter((p) => p.newPrice > Number(min) && p.newPrice <= Number(max))
+            }
+            else {
+                queryProducts = queryProducts.filter((p) => p.newPrice > Number(min))
+            }
+        }
+        return queryProducts;
+    }
+
+    const remainProductList = queryProductList()
+    return (
+        <div className="ms-2 py-2 d-flex flex-column justify-content-center">
+            <h5 className='text-start'>Products</h5>
+            <div className="row">
+                {
+                    remainProductList?.map((product) => (
+                        <Product key={product.id} product={product} />
+                    ))
+                }
+            </div>
+        </div>
+    )
+}
 
 export default Products;

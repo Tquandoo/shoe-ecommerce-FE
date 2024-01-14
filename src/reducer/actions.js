@@ -1,43 +1,38 @@
-/* 
-  action: {
-    type: feature/action
-    payload
-  }
-*/
 export const getProductList = (payload) => {
   return {
-      type: 'productList/fetchData',
-      payload: payload
+      type: 'productList/fetchProducts',
+      payload
   }
 }
-
 export const setSearchText = (payload) => {
   return {
       type: 'filters/searchText',
       payload: payload
   }
 }
+
 export const setSearchRecommended = (payload) => {
   return {
-    type: 'filters/searchRecommended',
-    payload: payload
+      type: 'filters/searchRecommended',
+      payload
   }
 }
-export const setSearchCategory= (payload) => {
+
+export const setSearchCategory = (payload) => {
   return {
-    type: 'filters/searchCategory',
-    payload: payload
+      type: 'filters/searchCategory',
+      payload
   }
 }
-export const setSearchColor= (payload) => {
+export const setSearchColor = (payload) => {
   return {
-    type: 'filters/searchColor',
-    payload: payload
+      type: 'filters/searchColor',
+      payload
   }
 }
-export const setSearchPrice= (payload) => {
+export const setSearchPrice = (payload) => {
   return {
-    type: 'filters/searchPrice',
-    payload: payload
+      type: 'filters/searchPrice',
+      payload
   }
 }
