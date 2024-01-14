@@ -59,6 +59,32 @@
   font-size: 1rem;
   font-weight: 200; 
 }
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.search-icon:hover {
+  font-size: 1.6rem;
+  transform: translateY(-50%) scale(1.2); /* Kích thước tăng lên khi hover */
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Thêm các kiểu dáng khác tùy thuộc vào ý của bạn */
 
 .cart-user{
   font-size: 1.6rem;

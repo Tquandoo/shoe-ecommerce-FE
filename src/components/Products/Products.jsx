@@ -3,6 +3,16 @@ import Product from './Product';
 import { ShoeContext } from '../context/ShoeContext';
 import { FaArrowAltCircleUp } from 'react-icons/fa';
 import { getProductList } from '../../reducer/actions';
+
+/* 
+    1.store
+    2.rootReducer
+      2.1. reducer
+      2.2. reducer
+    3. actions (action creator)
+    4. dispatch => useDispatch
+    5. useSelect => lấy các dữ liệu riêng biệt trong state(data)
+*/
 const Products = () => {
   const {state, dispatch } = useContext(ShoeContext)
   const { productList, filters: { searchText, recommended, category, color, price } } = state
