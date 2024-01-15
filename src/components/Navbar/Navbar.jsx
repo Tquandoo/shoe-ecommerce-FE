@@ -1,30 +1,37 @@
 import React from "react";
 import { FaCartPlus, FaSearch, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { Link } from "react-router-dom";
-
+import { CiSearch } from 'react-icons/ci';
 function Navbar() {
     return (
         <div className="container d-flex align-items-center border-bottom py-2">
-            <div className="d-flex align-items-center" style={{ minWidth: "180px" }}>
+             <div className="sidebar-content ">
+                <Link to={"/"} className="brand">
+                    <div className="d-flex flex-column align-items-center">
+                        <img className="sidebar-img" src="https://www.vectorkhazana.com/assets/images/products/Nike_Shoes_Drip.png" alt="shoe avatar" />
+                        <span className="brand-name">Shoe Ecommerce</span>
+                    </div>
+                </Link>
+            </div>
+            {/* <div className="d-flex align-items-center" style={{ minWidth: "180px" }}>
                 <Link to={"/"} className="logo">
                     <FaCartPlus size={22} className="me-2" /> Shoe Ecommerce
                 </Link>
-            </div>
-            <div className="d-flex flex-grow-1 justify-content-between">
-                <form className="w-50 d-flex align-items-center">
-                    <input
-                        type="search"
-                        placeholder="Enter your search shoes"
-                        className="form-control form-control-sm"
-                        style={{ paddingRight: '25px' }}
-                    />
-                    <FaSearch size={15} style={{ marginLeft: '-25px', color: 'rgba(0,0,0,.2)' }} />
+            </div> */}
+            <div className="ms-4 d-flex flex-grow-1 justify-content-between">
+                <form className="search-container">
+                <input
+                    className='search '
+                    type='text'
+                    placeholder='Enter your search shose...'
+                />
+                   <CiSearch className='search-icon text-secondary' size={20}/>
                 </form>
                 <div className="">
                     <Link to={'/cart'}>
-                        <FaShoppingCart size={20} className="me-2" role="button" />
+                        <FaShoppingCart size={22} className="me-2" role="button" />
                     </Link>
-                    <FaUser size={20} role="button" />
+                    <FaUser size={22} role="button" />
                 </div>
             </div>
 

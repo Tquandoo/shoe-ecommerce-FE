@@ -26,7 +26,7 @@ const prices = [
 function Price() {
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-            <h5>Price</h5>
+             <h3 className="fs-4 fw-normal">Price</h3>
             <div className="form-group">
                 {
                     prices.map((price,index) => (

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Button from 'react-bootstrap/Button';
 const recommended = [
     {
         value: 'All',
@@ -29,16 +29,15 @@ function Recommended() {
             <div className="form-group">
                 {
                     recommended.map(recmd => (
-                        <button key={recmd.value}
+                        <Button key={recmd.value}
+                        variant="outline-dark mx-1"
                             className={
-                                `btn btn-sm btn-outline-secondary me-1
-                                    ${recmd.value === 'All' ? 'active' : ''}
-                                `
+                                `${recmd.value === 'All' ? 'active' : ''}`
                             }
                             type="button"
                         >
                             {recmd.name}
-                        </button>
+                        </Button>
                     ))
                 }
             </div>

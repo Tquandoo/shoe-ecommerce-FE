@@ -6,7 +6,7 @@ const categories = [
 function Category() {
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-            <h5>Category</h5>
+            <h3 className="fs-4 fw-normal">Category</h3>
             <div className="form-group">
                 {
                     categories.map((cat,index) => (

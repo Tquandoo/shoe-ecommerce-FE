@@ -6,7 +6,7 @@ const colors = [
 function Colors() {
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-            <h5>Colors</h5>
+            <h3 className=" fs-4 fw-normal">Colors</h3>
             <div className="form-group">
                 {
                     colors.map((color,index) => (

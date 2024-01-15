@@ -16,14 +16,75 @@ input[type='search']::placeholder {
   cursor: pointer;
 }
 
-.logo {
+.sidebar-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.sidebar-img {
+  width: 52px; /* Tăng kích thước ảnh */
+  height: 50px;
+  border-radius: 50%; /* Bo tròn hình ảnh */
+}
+.brand {
   text-decoration: none;
-  color: #212529;
+}
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #121312; /* Màu xanh lá cây */
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng cho chữ */
+  transition: color 0.3s ease-in-out; /* Hiệu ứng màu chữ */
 }
 
+.brand-name:hover {
+  color: #d4481d; /* Màu cam khi hover */
+  cursor: pointer;
+}
 .card-image-middle {
   vertical-align: middle;
 }
+
+/* search */
+.search {
+  border-radius: 10px;
+  min-width: 500px;
+  border: 1px solid #ccc; 
+  padding: 8px; 
+  outline: none;
+  font-size: 1rem;
+  font-weight: 200; 
+}
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.search-icon:hover {
+  font-size: 1.6rem;
+  transform: translateY(-50%) scale(1.2); /* Kích thước tăng lên khi hover */
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+.search:focus {
+  border-color: #66afe9; 
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); 
+}
+
 
 .order-summary {
   background-color: rgba(0, 0, 0, .2);

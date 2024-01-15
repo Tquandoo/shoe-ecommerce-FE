@@ -9,7 +9,7 @@ function Product() {
                     className="card-image-top" alt="" 
                     style={{width: "70%"}}
                 />
-                <div className="card-body">
+                <div className="card-body text-center">
                     <p className="fw-bolder">{"Nike Air Monarch IV"}</p>
                     <div className="d-flex align-items-center mb-2">
                         <div className="me-1">
