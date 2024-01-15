@@ -1,6 +1,4 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchPrice } from "../../reducer/actions";
 
 const prices = [
     {
@@ -26,25 +24,22 @@ const prices = [
 
 ]
 function Price() {
-    const currentPrice = useSelector((state) => state.filters.price)
-    const dispatch = useDispatch()
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-            <h3 className="d-flex flex-start fs-4 fw-normal">Price</h3>
+            <h5>Price</h5>
             <div className="form-group">
                 {
                     prices.map((price,index) => (
-                        <div key={price.value} className="form-check py-1">
+                        <div key={price} className="form-check py-1">
                             <input className="form-check-input" type="radio" name="price"
                                 id={`price_${index}`}
                                 value={price.value}
-                                defaultChecked={price.value === '0,0'}
-                                onChange={(e) => dispatch(setSearchPrice(price.value))}
+                                defaultChecked={price.name === 'All'}
                             />
                             <label 
-                                className={`form-check-label ${price.value === currentPrice ? 'text-decoration-underline fw-bolder' : ''}`}
-                                htmlFor={`price_${index}`}
                                 role="button"
+                                htmlFor={`price_${index}`}
+                                className={`form-check-label ${price.name === 'All' ? 'text-decoration-underline fw-bolder' : ''}`}
                             >
                                 {price.name}
                             </label>

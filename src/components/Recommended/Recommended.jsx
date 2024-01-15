@@ -1,9 +1,6 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchRecommended } from "../../reducer/actions";
 
-const recommendedList = [
+const recommended = [
     {
         value: 'All',
         name: 'All Products'
@@ -26,23 +23,22 @@ const recommendedList = [
     }
 ]
 function Recommended() {
-    const dispatch = useDispatch()
-    const recommended = useSelector((state) => state.filters.recommended)
     return (
-        <div className="ms-2 py-3 d-flex flex-column align-items-start">
+        <div className="py-2 d-flex flex-column justify-content-center">
             <h5>Recommended</h5>
-            <div >
+            <div className="form-group">
                 {
-                    recommendedList.map(recmd => (
-                        <Button  key={recmd.value}
-                            variant="outline-dark mx-1"
+                    recommended.map(recmd => (
+                        <button key={recmd.value}
                             className={
-                                `${recmd.value === recommended ? 'active' : ''}`
+                                `btn btn-sm btn-outline-secondary me-1
+                                    ${recmd.value === 'All' ? 'active' : ''}
+                                `
                             }
-                            onClick={() => dispatch(setSearchRecommended(recmd.value))}
+                            type="button"
                         >
                             {recmd.name}
-                        </Button>
+                        </button>
                     ))
                 }
             </div>
