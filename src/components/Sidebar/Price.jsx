@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchPrice } from "../../reducer/actions";
-
+import filtersSlice from "../../slices/filtersSlice";
+import { priceSelector } from "../../redux-toolkit/selectors";
 const prices = [
     {
         value: '0,0',
@@ -26,11 +26,11 @@ const prices = [
 
 ]
 function Price() {
-    const currentPrice = useSelector((state) => state.filters.price)
+    const currentPrice = useSelector(priceSelector)
     const dispatch = useDispatch()
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-            <h3 className="d-flex flex-start fs-4 fw-normal">Price</h3>
+             <h3 className="fs-4 fw-normal">Price</h3>
             <div className="form-group">
                 {
                     prices.map((price,index) => (
@@ -38,13 +38,13 @@ function Price() {
                             <input className="form-check-input" type="radio" name="price"
                                 id={`price_${index}`}
                                 value={price.value}
-                                defaultChecked={price.value === '0,0'}
-                                onChange={(e) => dispatch(setSearchPrice(price.value))}
+                                defaultChecked={price.name === 'All'}
+                                onChange={(e)=> dispatch(filtersSlice.actions.setSearchPrice(e.target.value))}
                             />
                             <label 
-                                className={`form-check-label ${price.value === currentPrice ? 'text-decoration-underline fw-bolder' : ''}`}
-                                htmlFor={`price_${index}`}
                                 role="button"
+                                htmlFor={`price_${index}`}
+                                className={`form-check-label ${price.name === currentPrice ? 'text-decoration-underline fw-bolder' : ''}`}
                             >
                                 {price.name}
                             </label>

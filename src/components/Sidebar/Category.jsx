@@ -1,30 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchCategory } from "../../reducer/actions";
-
+import filtersSlice from "../../slices/filtersSlice";
+import { categorySelector } from "../../redux-toolkit/selectors";
 const categories = [
     "All", "Sneakers", "Flats", "Sandals", "Heels"
 ]
 function Category() {
-    const category = useSelector((state) => state.filters.category)
+    const category = useSelector(categorySelector)
     const dispatch = useDispatch()
     return (
         <div className="py-2 d-flex flex-column justify-content-center">
-             <h3 className="d-flex flex-start fs-4 fw-normal">Category</h3>
+            <h3 className="fs-4 fw-normal">Category</h3>
             <div className="form-group">
                 {
-                    categories.map((cat, index) => (
+                    categories.map((cat,index) => (
                         <div key={cat} className="form-check py-1">
                             <input className="form-check-input" type="radio" name="category"
                                 id={`cat_${index}`}
                                 value={cat}
                                 defaultChecked={cat === 'All'}
-                                onChange={(e) => dispatch(setSearchCategory(e.target.value))}
+                                onChange={(e) => dispatch(filtersSlice.actions.setSearchCategory(e.target.value))}
                             />
-                            <label
-                                className={`form-check-label ${cat === category ? 'text-decoration-underline fw-bolder' : ''}`}
+                            <label 
                                 htmlFor={`cat_${index}`}
                                 role="button"
+                                className={`form-check-label ${cat === category ? 'text-decoration-underline fw-bolder' : ''}`}
                             >
                                 {cat}
                             </label>

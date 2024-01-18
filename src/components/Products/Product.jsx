@@ -1,38 +1,39 @@
-import Card from 'react-bootstrap/Card';
-import { FaStar } from "react-icons/fa6";
-import { FaCartPlus } from "react-icons/fa";
+import React from "react";
+import { FaCartArrowDown, FaStar } from "react-icons/fa";
 
-function Product({ product }) {
+function Product({product}) {
     const {img, title, star, reviews, prevPrice, newPrice} = product
     return (
-      <div className='col-md-3 mb-4 '>
-      <Card > 
-        <Card.Img variant="top" className='card-img ' src={img} />
-        <Card.Body className='card-body'>
-        <Card.Title className='my-2 fs-5 overflow-hidden' style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</Card.Title>
-          <div className="d-flex align-items-center justify-content-between">
-            <div className=" d-flex align-items-center">
-              {
-                (new Array(star).fill(1)).map((item, index) => (
-                    <FaStar key={index} className='rate-star' size={13} />
-                ))
-              }
+        <div className="col-md-3 mb-4">
+            <div className="card-img card d-flex align-items-center pt-2">
+                <img src={img}
+                    className="card-image-top" alt="" 
+                    style={{width: "70%"}}
+                />
+                <div className="card-body text-center">
+                    <p className="fw-bolder">{title}</p>
+                    <div className="d-flex align-items-center mb-2">
+                        <div className="me-1">
+                           {
+                            (new Array(star).fill(1)).map((value, index) => (
+                                <FaStar  key={index} color='yellow'/>
+                            ))
+                           }
+                        </div>
+                        <div className="fs-10">
+                            ({reviews} reviewer)
+                        </div>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between">
+                         <div>
+                            <del className="line-through me-2">${prevPrice}</del>
+                            <span>${newPrice}</span>
+                        </div>   
+                        <FaCartArrowDown size={20} className="btn-cart"/>
+                    </div>
+                </div>
             </div>
-            <span className='fs-10 ml-1 '>({reviews} reviewer)</span>
-          </div>
-
-          <div className='mt-3 mx-3 d-flex align-items-center justify-content-between'>
-            <Card.Text className="my-2 ">
-              <del className="text-muted">{prevPrice}</del>
-              <strong className="mx-1 fs-5">${newPrice}</strong>
-            </Card.Text>
-            <span>
-                <FaCartPlus  size={22} />
-            </span>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+        </div>
 
     )
 }
