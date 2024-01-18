@@ -2,7 +2,12 @@ import React from "react";
 import { FaCartPlus, FaSearch, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import { CiSearch } from 'react-icons/ci';
+import { useDispatch, useSelector } from "react-redux";
+import filtersSlice from "../../slices/filtersSlice";
+import { searchTextSelector } from "../../redux-toolkit/selectors";
 function Navbar() {
+    const searchText = useSelector(searchTextSelector)
+    const dispatch = useDispatch()
     return (
         <div className="container d-flex align-items-center border-bottom py-2">
              <div className="sidebar-content ">
@@ -21,9 +26,11 @@ function Navbar() {
             <div className="ms-4 d-flex flex-grow-1 justify-content-between">
                 <form className="search-container">
                 <input
+                    value={searchText}
                     className='search '
                     type='text'
                     placeholder='Enter your search shose...'
+                    onInput={(e) => dispatch(filtersSlice.actions.setSearchText(e.target.value))}
                 />
                    <CiSearch className='search-icon text-secondary' size={20}/>
                 </form>

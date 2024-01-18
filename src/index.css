@@ -45,7 +45,9 @@ input[type='search']::placeholder {
 .card-image-middle {
   vertical-align: middle;
 }
-
+.card-img img{
+  object-fit: contain;
+}
 /* search */
 .search {
   border-radius: 10px;

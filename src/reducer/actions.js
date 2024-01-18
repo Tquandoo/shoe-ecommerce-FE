@@ -32,7 +32,7 @@ export const setSearchColor = (payload) => {
 }
 export const setSearchPrice = (payload) => {
   return {
-      type: 'filters/searchPrice',
+      type: 'filters/sea>?rchPrice',
       payload
   }
 }
